@@ -1,0 +1,11 @@
+C:\Code\Naylor\GitHub\DapperDemo\DapperDemo\DapperSimpleCURD\bin\Debug\netcoreapp2.1\DapperSimpleCURD.deps.json
+C:\Code\Naylor\GitHub\DapperDemo\DapperDemo\DapperSimpleCURD\bin\Debug\netcoreapp2.1\DapperSimpleCURD.runtimeconfig.json
+C:\Code\Naylor\GitHub\DapperDemo\DapperDemo\DapperSimpleCURD\bin\Debug\netcoreapp2.1\DapperSimpleCURD.runtimeconfig.dev.json
+C:\Code\Naylor\GitHub\DapperDemo\DapperDemo\DapperSimpleCURD\bin\Debug\netcoreapp2.1\DapperSimpleCURD.dll
+C:\Code\Naylor\GitHub\DapperDemo\DapperDemo\DapperSimpleCURD\obj\Debug\netcoreapp2.1\DapperSimpleCURD.csprojAssemblyReference.cache
+C:\Code\Naylor\GitHub\DapperDemo\DapperDemo\DapperSimpleCURD\obj\Debug\netcoreapp2.1\DapperSimpleCURD.csproj.CoreCompileInputs.cache
+C:\Code\Naylor\GitHub\DapperDemo\DapperDemo\DapperSimpleCURD\obj\Debug\netcoreapp2.1\DapperSimpleCURD.AssemblyInfoInputs.cache
+C:\Code\Naylor\GitHub\DapperDemo\DapperDemo\DapperSimpleCURD\obj\Debug\netcoreapp2.1\DapperSimpleCURD.AssemblyInfo.cs
+C:\Code\Naylor\GitHub\DapperDemo\DapperDemo\DapperSimpleCURD\bin\Debug\netcoreapp2.1\DapperSimpleCURD.pdb
+C:\Code\Naylor\GitHub\DapperDemo\DapperDemo\DapperSimpleCURD\obj\Debug\netcoreapp2.1\DapperSimpleCURD.dll
+C:\Code\Naylor\GitHub\DapperDemo\DapperDemo\DapperSimpleCURD\obj\Debug\netcoreapp2.1\DapperSimpleCURD.pdb
