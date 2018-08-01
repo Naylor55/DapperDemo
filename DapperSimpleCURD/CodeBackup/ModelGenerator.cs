@@ -7,9 +7,12 @@
 //     Provider:               `System.Data.SqlClient`
 //     Connection String:      `Data Source=192.168.0.136;Initial Catalog=Leading;Persist Security Info=True;User ID=sa;Password=******;Application Name=Leading.ERP `
 //     Include Views:          `True`
+
+
 using Dapper;
 using System;
 using System.Collections.Generic;
+
 
 namespace DapperDemo.Models
 {
@@ -457,31 +460,6 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
-    /// A class which represents the InvoiceRequire table.
-    /// </summary>
-	[Table("InvoiceRequire")]
-	public partial class InvoiceRequire
-	{
-		[Key]
-		public virtual int Id { get; set; }
-		public virtual int ComId { get; set; }
-		public virtual int StatementId { get; set; }
-		public virtual string InvoiceName { get; set; }
-		public virtual string InvoiceType { get; set; }
-		public virtual string InvoiceContent { get; set; }
-		public virtual decimal InvoiceAmount { get; set; }
-		public virtual string InvoiceMemo { get; set; }
-		public virtual string InvoiceStatus { get; set; }
-		public virtual int UserId { get; set; }
-		public virtual DateTime UpdateTime { get; set; }
-		public virtual int MemberInvoiceId { get; set; }
-		public virtual string applicationNo { get; set; }
-		public virtual decimal InvoiceMoney { get; set; }
-		public virtual string MemoOnInvoice { get; set; }
-		public virtual string ErrorMessage { get; set; }
-	}
-
-    /// <summary>
     /// A class which represents the Sys_UserRole table.
     /// </summary>
 	[Table("Sys_UserRole")]
@@ -535,8 +513,29 @@ namespace DapperDemo.Models
 		public virtual int IsAvalible { get; set; }
 		public virtual DateTime UpdateTime { get; set; }
 		public virtual int IsDefault { get; set; }
-		public virtual int AddressId { get; set; }
-		public virtual string WarehouseType { get; set; }
+		public virtual int address_id { get; set; }
+		public virtual string warehouse_type { get; set; }
+	}
+
+    /// <summary>
+    /// A class which represents the InvoiceRequire table.
+    /// </summary>
+	[Table("InvoiceRequire")]
+	public partial class InvoiceRequire
+	{
+		public virtual int Id { get; set; }
+		public virtual int ComId { get; set; }
+		public virtual int StatementId { get; set; }
+		public virtual string InvoiceName { get; set; }
+		public virtual string InvoiceType { get; set; }
+		public virtual string InvoiceContent { get; set; }
+		public virtual decimal InvoiceAmount { get; set; }
+		public virtual string InvoiceMemo { get; set; }
+		public virtual string InvoiceStatus { get; set; }
+		public virtual int UserId { get; set; }
+		public virtual DateTime UpdateTime { get; set; }
+		public virtual int MemberInvoiceId { get; set; }
+		public virtual string applicationNo { get; set; }
 	}
 
     /// <summary>
@@ -683,6 +682,26 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
+    /// A class which represents the discount table.
+    /// </summary>
+	[Table("discount")]
+	public partial class discount
+	{
+		[Key]
+		public virtual int id { get; set; }
+		public virtual int object_id { get; set; }
+		public virtual byte object_type { get; set; }
+		public virtual string object_name { get; set; }
+		public virtual string name { get; set; }
+		public virtual byte type { get; set; }
+		public virtual DateTime start_time { get; set; }
+		public virtual DateTime end_time { get; set; }
+		public virtual DateTime create_time { get; set; }
+		public virtual int creator_id { get; set; }
+		public virtual IEnumerable<discountsku> discountsku { get; set; }
+	}
+
+    /// <summary>
     /// A class which represents the VIPConfiguration table.
     /// </summary>
 	[Table("VIPConfiguration")]
@@ -775,21 +794,6 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
-    /// A class which represents the TPI_ParamCompare table.
-    /// </summary>
-	[Table("TPI_ParamCompare")]
-	public partial class TPIParamCompare
-	{
-		[Key]
-		public virtual int Id { get; set; }
-		public virtual int ProjectId { get; set; }
-		public virtual int TypeId { get; set; }
-		public virtual string LeadingParam { get; set; }
-		public virtual string CustomerParam { get; set; }
-		public virtual int CustomerSort { get; set; }
-	}
-
-    /// <summary>
     /// A class which represents the TPI_Category table.
     /// </summary>
 	[Table("TPI_Category")]
@@ -874,6 +878,23 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
+    /// A class which represents the discount_sku table.
+    /// </summary>
+	[Table("discount_sku")]
+	public partial class discountsku
+	{
+		[Key]
+		public virtual int id { get; set; }
+		public virtual int discount_id { get; set; }
+		public virtual int sku_id { get; set; }
+		public virtual int total { get; set; }
+		public virtual int MOQ { get; set; }
+		public virtual float discount_value { get; set; }
+		public virtual byte? ladder_level { get; set; }
+		public virtual discount discount { get; set; }
+	}
+
+    /// <summary>
     /// A class which represents the PurchaseStatementDetail table.
     /// </summary>
 	[Table("PurchaseStatementDetail")]
@@ -939,6 +960,24 @@ namespace DapperDemo.Models
 		public virtual string BarCode { get; set; }
 		public virtual int BarCodeUserId { get; set; }
 		public virtual DateTime UpdateTime { get; set; }
+	}
+
+    /// <summary>
+    /// A class which represents the PurchaseInvoiceDetail table.
+    /// </summary>
+	[Table("PurchaseInvoiceDetail")]
+	public partial class PurchaseInvoiceDetail
+	{
+		public virtual int Id { get; set; }
+		[Key]
+		public virtual int PurchaseId { get; set; }
+		public virtual int PurchaseInvoiceId { get; set; }
+		public virtual int GoodsId { get; set; }
+		public virtual int? Num { get; set; }
+		public virtual decimal? Amount { get; set; }
+		public virtual decimal InPrice { get; set; }
+		public virtual decimal TaxRate { get; set; }
+		public virtual decimal Tax { get; set; }
 	}
 
     /// <summary>
@@ -1180,6 +1219,18 @@ namespace DapperDemo.Models
 		public virtual int UserId { get; set; }
 		public virtual DateTime UpdateTime { get; set; }
 		public virtual decimal ChargeOff { get; set; }
+	}
+
+    /// <summary>
+    /// A class which represents the sku_region table.
+    /// </summary>
+	[Table("sku_region")]
+	public partial class skuregion
+	{
+		[Key]
+		public virtual int sku_id { get; set; }
+		public virtual int region_id { get; set; }
+		public virtual byte is_available { get; set; }
 	}
 
     /// <summary>
@@ -1791,7 +1842,6 @@ namespace DapperDemo.Models
 	[Table("InvoiceMemberInfo")]
 	public partial class InvoiceMemberInfo
 	{
-		[Key]
 		public virtual int Id { get; set; }
 		public virtual int MemberId { get; set; }
 		public virtual string InvoiceTaxNo { get; set; }
@@ -1801,11 +1851,6 @@ namespace DapperDemo.Models
 		public virtual string InvoiceAccount { get; set; }
 		public virtual string InvoiceMemo { get; set; }
 		public virtual string MemberName { get; set; }
-		public virtual int ComId { get; set; }
-		public virtual string InvoiceName { get; set; }
-		public virtual string InvoiceType { get; set; }
-		public virtual DateTime CreateTime { get; set; }
-		public virtual DateTime UpdateTime { get; set; }
 	}
 
     /// <summary>
@@ -2179,6 +2224,18 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
+    /// A class which represents the InventoryIncreaseEvent table.
+    /// </summary>
+	[Table("InventoryIncreaseEvent")]
+	public partial class InventoryIncreaseEvent
+	{
+		[Key]
+		public virtual int Id { get; set; }
+		public virtual int BranchId { get; set; }
+		public virtual int WarehouseId { get; set; }
+	}
+
+    /// <summary>
     /// A class which represents the View_Order view.
     /// </summary>
 	[Table("View_Order")]
@@ -2363,6 +2420,31 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
+    /// A class which represents the InventoryOperationLog table.
+    /// </summary>
+	[Table("InventoryOperationLog")]
+	public partial class InventoryOperationLog
+	{
+		[Key]
+		public virtual int Id { get; set; }
+		public virtual int WarehouseId { get; set; }
+		public virtual int SkuId { get; set; }
+		public virtual int Action { get; set; }
+		public virtual string OperationType { get; set; }
+		public virtual int? AvailableQtyBefore { get; set; }
+		public virtual int? AvailableQtyChange { get; set; }
+		public virtual int? AvailableQtyAfter { get; set; }
+		public virtual int? AssignedQtyBefore { get; set; }
+		public virtual int? AssignedQtyChange { get; set; }
+		public virtual int? AssignedQtyAfter { get; set; }
+		public virtual int? OrderId { get; set; }
+		public virtual DateTime? CreateTime { get; set; }
+		public virtual DateTime? UpdateTime { get; set; }
+		public virtual int ? UpdateUserId { get; set; }
+		public virtual string Memo { get; set; }
+	}
+
+    /// <summary>
     /// A class which represents the GoodsStandingInventory table.
     /// </summary>
 	[Table("GoodsStandingInventory")]
@@ -2526,6 +2608,22 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
+    /// A class which represents the OrderInventoryMatch table.
+    /// </summary>
+	[Table("OrderInventoryMatch")]
+	public partial class OrderInventoryMatch
+	{
+		[Key]
+		public virtual int Id { get; set; }
+		public virtual int OrderId { get; set; }
+		public virtual int? BranchId { get; set; }
+		public virtual int? IsUrgent { get; set; }
+		public virtual int Status { get; set; }
+		public virtual DateTime? CreateTime { get; set; }
+		public virtual DateTime? UpdateTime { get; set; }
+	}
+
+    /// <summary>
     /// A class which represents the View_PurchaseStatement view.
     /// </summary>
 	[Table("View_PurchaseStatement")]
@@ -2601,6 +2699,22 @@ namespace DapperDemo.Models
 		public virtual string BankAccountName { get; set; }
 		public virtual DateTime PayDate { get; set; }
 		public virtual decimal ChargeOff { get; set; }
+	}
+
+    /// <summary>
+    /// A class which represents the InventoryItem table.
+    /// </summary>
+	[Table("InventoryItem")]
+	public partial class InventoryItem
+	{
+		[Key]
+		public virtual int Id { get; set; }
+		public virtual int WarehouseId { get; set; }
+		public virtual int SkuId { get; set; }
+		public virtual int? AvailableQty { get; set; }
+		public virtual int? AssignedQty { get; set; }
+		public virtual DateTime? CreateTime { get; set; }
+		public virtual DateTime? UpdateTime { get; set; }
 	}
 
     /// <summary>
@@ -2844,22 +2958,6 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
-    /// A class which represents the InventoryItem table.
-    /// </summary>
-	[Table("InventoryItem")]
-	public partial class InventoryItem
-	{
-		public virtual int Id { get; set; }
-		[Key]
-		public virtual int WarehouseId { get; set; }
-		public virtual int SkuId { get; set; }
-		public virtual int AvailableQty { get; set; }
-		public virtual int AssignedQty { get; set; }
-		public virtual DateTime CreateTime { get; set; }
-		public virtual DateTime UpdateTime { get; set; }
-	}
-
-    /// <summary>
     /// A class which represents the MemberVisit_del table.
     /// </summary>
 	[Table("MemberVisit_del")]
@@ -3086,24 +3184,6 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
-    /// A class which represents the OrderInventoryMatch table.
-    /// </summary>
-	[Table("OrderInventoryMatch")]
-	public partial class OrderInventoryMatch
-	{
-		public virtual int Id { get; set; }
-		[Key]
-		public virtual int OrderId { get; set; }
-		public virtual int BranchId { get; set; }
-		public virtual int IsUrgent { get; set; }
-		public virtual int Status { get; set; }
-		public virtual DateTime CreateTime { get; set; }
-		public virtual DateTime UpdateTime { get; set; }
-		public virtual int WarehouseId { get; set; }
-		public virtual DateTime OrderCreateTime { get; set; }
-	}
-
-    /// <summary>
     /// A class which represents the InvoiceRequireDetail table.
     /// </summary>
 	[Table("InvoiceRequireDetail")]
@@ -3114,7 +3194,7 @@ namespace DapperDemo.Models
 		public virtual int InvoiceRequireId { get; set; }
 		public virtual int OrderId { get; set; }
 		public virtual int GoodsId { get; set; }
-		public virtual decimal Num { get; set; }
+		public virtual int Num { get; set; }
 		public virtual decimal SumMoney { get; set; }
 	}
 
@@ -3246,7 +3326,6 @@ namespace DapperDemo.Models
 	[Table("GoodsModel")]
 	public partial class GoodsModel
 	{
-		[Key]
 		public virtual int Id { get; set; }
 		public virtual int GoodsId { get; set; }
 		public virtual int Model1Id { get; set; }
@@ -3326,27 +3405,6 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
-    /// A class which represents the Address table.
-    /// </summary>
-	[Table("Address")]
-	public partial class Address
-	{
-		[Key]
-		public virtual int Id { get; set; }
-		public virtual string ProvinceCode { get; set; }
-		public virtual string ProvinceName { get; set; }
-		public virtual string CityCode { get; set; }
-		public virtual string CityName { get; set; }
-		public virtual string DistrictCode { get; set; }
-		public virtual string DistrictName { get; set; }
-		public virtual string Street { get; set; }
-		public virtual string Zip { get; set; }
-		public virtual string ContactTelephone { get; set; }
-		public virtual string ContactName { get; set; }
-		public virtual byte CodeType { get; set; }
-	}
-
-    /// <summary>
     /// A class which represents the TPI_DSFBrand1123 table.
     /// </summary>
 	[Table("TPI_DSFBrand1123")]
@@ -3371,18 +3429,6 @@ namespace DapperDemo.Models
 		public virtual double? 最小库存 { get; set; }
 		public virtual double? 最大库存 { get; set; }
 		public virtual string 备注 { get; set; }
-	}
-
-    /// <summary>
-    /// A class which represents the InventoryAvailableQtyIincreaseEvent table.
-    /// </summary>
-	[Table("InventoryAvailableQtyIincreaseEvent")]
-	public partial class InventoryAvailableQtyIincreaseEvent
-	{
-		public virtual int Id { get; set; }
-		[Key]
-		public virtual int BranchId { get; set; }
-		public virtual int WarehouseId { get; set; }
 	}
 
     /// <summary>
@@ -3461,33 +3507,6 @@ namespace DapperDemo.Models
 		public virtual string ReJectMsg { get; set; }
 		public virtual string JD_Link { get; set; }
 		public virtual decimal? JD_Price { get; set; }
-		public virtual decimal TaxRate { get; set; }
-		public virtual string TaxCode { get; set; }
-	}
-
-    /// <summary>
-    /// A class which represents the InventoryOperationLog table.
-    /// </summary>
-	[Table("InventoryOperationLog")]
-	public partial class InventoryOperationLog
-	{
-		public virtual int Id { get; set; }
-		[Key]
-		public virtual int WarehouseId { get; set; }
-		public virtual int SkuId { get; set; }
-		public virtual int Action { get; set; }
-		public virtual string OperationType { get; set; }
-		public virtual int AvailableQtyBefore { get; set; }
-		public virtual int AvailableQtyChange { get; set; }
-		public virtual int AvailableQtyAfter { get; set; }
-		public virtual int AssignedQtyBefore { get; set; }
-		public virtual int AssignedQtyChange { get; set; }
-		public virtual int AssignedQtyAfter { get; set; }
-		public virtual int OrderId { get; set; }
-		public virtual DateTime CreateTime { get; set; }
-		public virtual DateTime UpdateTime { get; set; }
-		public virtual int UpdateUserId { get; set; }
-		public virtual string Memo { get; set; }
 	}
 
     /// <summary>
@@ -3861,7 +3880,6 @@ namespace DapperDemo.Models
 		public virtual int PushType { get; set; }
 		public virtual int IsDiscount { get; set; }
 		public virtual int? stockType { get; set; }
-		public virtual int IsUseParamCompare { get; set; }
 	}
 
     /// <summary>
@@ -4054,18 +4072,6 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
-    /// A class which represents the SkuRegion table.
-    /// </summary>
-	[Table("SkuRegion")]
-	public partial class SkuRegion
-	{
-		[Key]
-		public virtual int SkuId { get; set; }
-		public virtual int RegionId { get; set; }
-		public virtual byte IsAvailable { get; set; }
-	}
-
-    /// <summary>
     /// A class which represents the View_GoodsStoreDetail view.
     /// </summary>
 	[Table("View_GoodsStoreDetail")]
@@ -4187,32 +4193,12 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
-    /// A class which represents the Discount table.
-    /// </summary>
-	[Table("Discount")]
-	public partial class Discount
-	{
-		[Key]
-		public virtual int Id { get; set; }
-		public virtual int ObjectId { get; set; }
-		public virtual byte ObjectType { get; set; }
-		public virtual string ObjectName { get; set; }
-		public virtual string Name { get; set; }
-		public virtual byte Type { get; set; }
-		public virtual DateTime StartTime { get; set; }
-		public virtual DateTime EndTime { get; set; }
-		public virtual DateTime CreateTime { get; set; }
-		public virtual int CreatorId { get; set; }
-	}
-
-    /// <summary>
     /// A class which represents the OrderStatementDetail table.
     /// </summary>
 	[Table("OrderStatementDetail")]
 	public partial class OrderStatementDetail
 	{
 		public virtual int Id { get; set; }
-		[Key]
 		public virtual int OrderStatementId { get; set; }
 		public virtual int OrderId { get; set; }
 	}
@@ -4387,22 +4373,6 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
-    /// A class which represents the DiscountSku table.
-    /// </summary>
-	[Table("DiscountSku")]
-	public partial class DiscountSku
-	{
-		[Key]
-		public virtual int Id { get; set; }
-		public virtual int DiscountId { get; set; }
-		public virtual int SkuId { get; set; }
-		public virtual int Total { get; set; }
-		public virtual int MOQ { get; set; }
-		public virtual float DiscountValue { get; set; }
-		public virtual byte? LadderLevel { get; set; }
-	}
-
-    /// <summary>
     /// A class which represents the View_GoodsStandingInventory view.
     /// </summary>
 	[Table("View_GoodsStandingInventory")]
@@ -4525,8 +4495,6 @@ namespace DapperDemo.Models
 		public virtual int StoreId { get; set; }
 		public virtual decimal Amount { get; set; }
 		public virtual DateTime Updatetime { get; set; }
-		public virtual decimal TaxAmount { get; set; }
-		public virtual int GoodsCount { get; set; }
 	}
 
     /// <summary>
@@ -4745,8 +4713,6 @@ namespace DapperDemo.Models
 		public virtual int IsCalc { get; set; }
 		public virtual decimal TaxAC { get; set; }
 		public virtual decimal? CostPrice { get; set; }
-		public virtual decimal TaxRate { get; set; }
-		public virtual decimal Tax { get; set; }
 	}
 
     /// <summary>
@@ -4933,6 +4899,27 @@ namespace DapperDemo.Models
 	}
 
     /// <summary>
+    /// A class which represents the address table.
+    /// </summary>
+	[Table("address")]
+	public partial class address
+	{
+		[Key]
+		public virtual int id { get; set; }
+		public virtual string province_code { get; set; }
+		public virtual string province_name { get; set; }
+		public virtual string city_code { get; set; }
+		public virtual string city_name { get; set; }
+		public virtual string district_code { get; set; }
+		public virtual string district_name { get; set; }
+		public virtual string street { get; set; }
+		public virtual string zip { get; set; }
+		public virtual string contact_telephone { get; set; }
+		public virtual string contact_name { get; set; }
+		public virtual byte code_type { get; set; }
+	}
+
+    /// <summary>
     /// A class which represents the Sys_Car table.
     /// </summary>
 	[Table("Sys_Car")]
@@ -5053,24 +5040,6 @@ namespace DapperDemo.Models
 		public virtual string Address { get; set; }
 		public virtual string DeptName { get; set; }
 		public virtual int BranchId { get; set; }
-	}
-
-    /// <summary>
-    /// A class which represents the PurchaseInvoiceDetail table.
-    /// </summary>
-	[Table("PurchaseInvoiceDetail")]
-	public partial class PurchaseInvoiceDetail
-	{
-		public virtual int Id { get; set; }
-		[Key]
-		public virtual int PurchaseId { get; set; }
-		public virtual int PurchaseInvoiceId { get; set; }
-		public virtual int GoodsId { get; set; }
-		public virtual decimal Num { get; set; }
-		public virtual decimal? Amount { get; set; }
-		public virtual decimal InPrice { get; set; }
-		public virtual decimal TaxRate { get; set; }
-		public virtual decimal Tax { get; set; }
 	}
 
     /// <summary>

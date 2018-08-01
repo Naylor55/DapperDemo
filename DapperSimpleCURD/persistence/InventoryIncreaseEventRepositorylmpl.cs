@@ -44,11 +44,11 @@ namespace DapperDemo.persistence
         /// 获取一个list的数据
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<InventoryIncreaseEvent> FindInventoryIncreaseEvent()
+        public IEnumerable<InventoryAvailableQtyIincreaseEvent> FindInventoryIncreaseEvent()
         {
             using (Conn)
             {
-                return Conn.GetList<InventoryIncreaseEvent>();
+                return Conn.GetList<InventoryAvailableQtyIincreaseEvent>();
             }
         }
 
@@ -57,11 +57,11 @@ namespace DapperDemo.persistence
         /// 根据where条件获取一个list的数据
         /// </summary>
         /// <returns></returns>
-        public List<InventoryIncreaseEvent> FindInventoryIncreaseEventWhere(string str)
+        public List<InventoryAvailableQtyIincreaseEvent> FindInventoryIncreaseEventWhere(string str)
         {
             using (Conn)
             {
-                return Conn.GetList<InventoryIncreaseEvent>(str).ToList();
+                return Conn.GetList<InventoryAvailableQtyIincreaseEvent>(str).ToList();
             }
         }
 
@@ -69,11 +69,11 @@ namespace DapperDemo.persistence
         /// 根据where条件获取一个list的数据
         /// </summary>
         /// <returns></returns>
-        public List<InventoryIncreaseEvent> FindInventoryIncreaseEventWhere(string str, object obj)
+        public List<InventoryAvailableQtyIincreaseEvent> FindInventoryIncreaseEventWhere(string str, object obj)
         {
             using (Conn)
             {
-                return Conn.GetList<InventoryIncreaseEvent>(str, obj).ToList();
+                return Conn.GetList<InventoryAvailableQtyIincreaseEvent>(str, obj).ToList();
             }
         }
 
@@ -82,11 +82,11 @@ namespace DapperDemo.persistence
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public InventoryIncreaseEvent GetInventoryIncreaseEventById(string id)
+        public InventoryAvailableQtyIincreaseEvent GetInventoryIncreaseEventById(string id)
         {
             using (Conn)
             {
-                return Conn.Get<InventoryIncreaseEvent>(id);
+                return Conn.Get<InventoryAvailableQtyIincreaseEvent>(id);
             }
         }
 
@@ -95,7 +95,7 @@ namespace DapperDemo.persistence
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int UpdateInventoryIncreaseEvent(InventoryIncreaseEvent obj)
+        public int UpdateInventoryIncreaseEvent(InventoryAvailableQtyIincreaseEvent obj)
         {
             using (Conn)
             {
@@ -108,7 +108,7 @@ namespace DapperDemo.persistence
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int InsertInventoryIncreaseEvent(InventoryIncreaseEvent obj)
+        public int InsertInventoryIncreaseEvent(InventoryAvailableQtyIincreaseEvent obj)
         {
             using (Conn)
             {
@@ -121,7 +121,7 @@ namespace DapperDemo.persistence
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int DeleteInventoryIncreaseEvent(InventoryIncreaseEvent obj)
+        public int DeleteInventoryIncreaseEvent(InventoryAvailableQtyIincreaseEvent obj)
         {
             using (Conn)
             {

@@ -1,7 +1,6 @@
-﻿using DapperDemo.service;
+﻿
 using Dapper;
 using DapperDemo.Models;
-using DapperDemo.service.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
